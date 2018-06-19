@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("./internal/config"));
 const express_1 = __importDefault(require("express"));
-const http_1 = __importDefault(require("http"));
+// const http_1 = __importDefault(require("http"));
 const socket_io_1 = __importDefault(require("socket.io"));
 const routes_1 = __importDefault(require("./routes"));
 const app = express_1.default();
@@ -33,12 +33,12 @@ const server = app.listen(port, host, () => {
     log.info(`HBUD server listening at http://${ address }:${ port } ${ family }`)
 
 });
-const ioServer = new http_1.default.Server(app);
-const io = socket_io_1.default(ioServer);
-const ioPort = config_1.default.get(`network:${process.env.appname}:ioPort`);
-ioServer.listen(ioPort, host, () => {
-    log.info(`socket.io listening on port ${ioPort}`);
-});
+// const ioServer = new http_1.default.Server(app);
+const io = socket_io_1.default(server);
+// const ioPort = config_1.default.get(`network:${process.env.appname}:ioPort`);
+// ioServer.listen(ioPort, host, () => {
+//     log.info(`socket.io listening on port ${ioPort}`);
+// });
 io.on('connection', socket => {
     log.info(`socket connected`);
     socket.emit('test', { test: 'data' });
