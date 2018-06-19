@@ -41,13 +41,13 @@ const server = app.listen(port, host, () => {
 
 });
 
-const ioServer = new http.Server(app);
-const io = sio(ioServer);
-const ioPort = config.get(`network:${ process.env.appname }:ioPort`);
+// const ioServer = new http.Server(app);
+const io = sio(server);
+// const ioPort = config.get(`network:${ process.env.appname }:ioPort`);
 
-ioServer.listen(ioPort, host, () => {
-    log.info(`socket.io listening on port ${ ioPort }`)
-});
+// ioServer.listen(ioPort, host, () => {
+//     log.info(`socket.io listening on port ${ ioPort }`)
+// });
 
 io.on('connection', socket => {
 
