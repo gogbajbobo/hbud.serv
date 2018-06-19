@@ -27,12 +27,12 @@ const host = config_1.default.get(`network:${process.env.appname}:hostname`);
 log.info(`appname: ${process.env.appname}`);
 log.info(`NODE_ENV: ${process.env.NODE_ENV}`);
 log.info(`host: ${host} / port: ${port}`);
-// const server = app.listen(port, host, () => {
-//
-//     const { address, port, family } = server.address() as AddressInfo;
-//     log.info(`HBUD server listening at http://${ address }:${ port } ${ family }`)
-//
-// });
+const server = app.listen(port, host, () => {
+
+    const { address, port, family } = server.address() as AddressInfo;
+    log.info(`HBUD server listening at http://${ address }:${ port } ${ family }`)
+
+});
 const ioServer = new http_1.default.Server(app);
 const io = socket_io_1.default(ioServer, { transports: ['websocket'] });
 const ioPort = config_1.default.get(`network:${process.env.appname}:ioPort`);
